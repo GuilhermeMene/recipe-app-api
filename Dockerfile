@@ -1,5 +1,5 @@
 FROM python:3.11.9-alpine3.20
-LABEL maintainer="jgbapps.com"
+LABEL maintainer="notnecessary.com"
 
 ENV PYTHONNUNBUFFERED 1
 
