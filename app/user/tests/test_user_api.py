@@ -124,7 +124,7 @@ class PrivateUserApiTests(TestCase):
             password='testpassword123',
         )
         self.client = APIClient()
-        self.client.force_authentication(user=self.user)
+        self.client.force_authenticate(user=self.user)
 
     def test_retrieve_profile_sucess(self):
         """test retrieving profile for logged in user"""
@@ -146,10 +146,10 @@ class PrivateUserApiTests(TestCase):
         """Test updating the user profile for the authenticated user"""
         payload = {'name': 'Updated name', 'password':'Updatedpassword'}
 
-        res = self.client(ME_URL, payload)
+        res = self.client.patch(ME_URL, payload)
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
-        self.assertEqual(self.user.check_password(payload['password']))
+        self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
