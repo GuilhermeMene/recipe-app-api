@@ -20,6 +20,7 @@ def recipe_image_file_path(instance, filename):
 
     return os.path.join('uploads', 'recipe', filename)
 
+
 class UserManager(BaseUserManager):
     """Manager for users"""
 
@@ -42,6 +43,7 @@ class UserManager(BaseUserManager):
 
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """User in the system"""
     email = models.EmailField(max_length=255, unique=True)
@@ -51,7 +53,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    #Set the default username field
     USERNAME_FIELD = 'email'
 
 
@@ -87,6 +88,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Ingredient(models.Model):
     """Ingredient for recipes"""
     name = models.CharField(max_length=255)
@@ -97,4 +99,3 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
-

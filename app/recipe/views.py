@@ -41,9 +41,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
 
 class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
-                mixins.UpdateModelMixin,
-                mixins.ListModelMixin,
-                viewsets.GenericViewSet):
+                            mixins.UpdateModelMixin,
+                            mixins.ListModelMixin,
+                            viewsets.GenericViewSet):
     """Base viewset for the recipe attributes"""
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -65,4 +65,3 @@ class IngredientViewSet(BaseRecipeAttrViewSet):
 
     serializer_class = serializers.IngredientSerializer
     queryset = Ingredient.objects.all()
-
